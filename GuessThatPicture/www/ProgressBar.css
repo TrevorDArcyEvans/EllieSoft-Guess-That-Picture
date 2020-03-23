@@ -1,0 +1,66 @@
+.meter-wrap
+{
+  margin: 0 auto 1em auto;
+  position: relative;
+}
+
+.meter-wrap, .meter-value, .meter-text
+{
+  /* The width and height of your image */
+  width: 300px;
+  height: 30px;
+}
+
+.meter-wrap, .meter-value
+{
+  -webkit-border-radius: 15px;
+}
+
+.meter-text
+{
+  position: absolute;
+  top:0; left:0;
+
+  padding-top: 5px;
+
+  color: #fff;
+  text-align: center;
+  width: 100%;
+}
+
+/* ---------------------------------------------- */
+
+.meter-wrap-toy
+{
+  margin: 0 auto 1em auto;
+  position: relative;
+  border : 1px solid;
+  margin-bottom: 0px;
+}
+
+.meter-wrap-toy, .meter-value-toy, .meter-text-toy
+{
+  /* The width and height of your image */
+  width: 100px;
+  height: 20px;
+  margin-top: 0px;
+}
+
+.meter-wrap-toy, .meter-value-toy
+{
+  -webkit-border-radius: 10px;
+}
+
+.meter-text-toy
+{
+  position: absolute;
+  top:0; left:0;
+
+  padding-top: 2px;
+
+  color: #fff;
+  text-align: left;
+  width: 100%;
+}
+
+

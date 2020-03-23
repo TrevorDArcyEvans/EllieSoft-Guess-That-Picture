@@ -1,0 +1,72 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <!-- Change this if you want to allow scaling -->
+  <meta name="viewport" content="width=default-width; user-scalable=no" />
+
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+
+  <link type="text/css" rel="stylesheet" href="common.css">
+
+  <title>Guess That Picture</title>
+
+  <style>
+    *
+    {
+      margin: 1px;
+    }
+  </style>
+
+  <!-- iPad/iPhone specific css below, add after your main css >
+  <link rel="stylesheet" media="only screen and (max-device-width: 1024px)" href="ipad.css" type="text/css" />
+  <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="iphone.css" type="text/css" />
+  -->
+
+  <script type="text/javascript" charset="utf-8" src="common.js"></script>
+  <script type="text/javascript" charset="utf-8" src="BrowserDetect.js"></script>
+  <script type="text/javascript" charset="utf-8" src="RewardsPlayer.js"></script>
+
+  <script type="text/javascript" charset="utf-8">
+    function InitMain()
+    {
+      PreventTouchMove();
+    }
+
+    // from:
+    //    http://stackoverflow.com/questions/901115/get-query-string-values-in-javascript
+    var UrlParams = {};
+    (function ()
+    {
+      var e,
+          a = /\+/g,  // Regex for replacing addition symbol with a space
+          r = /([^&=]+)=?([^&]*)/g,
+          d = function (s) { return decodeURIComponent(s.replace(a, " ")); },
+          q = window.location.search.substring(1);
+
+      while (e = r.exec(q))
+      {
+        UrlParams[d(e[1])] = d(e[2]);
+      }
+    })();
+  </script>
+
+</head>
+
+<body onLoad="InitMain(); InitPlayer();">
+  <div>
+    <canvas id="PlayerCanvas" width="600" height="600"></canvas>
+
+    <table id="menubar" style="position:absolute; bottom:0px; z-index:1000; width: 99%;">
+      <tbody align="center">
+        <tr>
+          <td><a onclick="location.href='index.html';"><img class="icon" src="./Resources/Icons/DeveloperKit/home.png"></a></td>
+          <td><a onclick="location.href='game.html';"><img class="icon" src="./Resources/Icons/DeveloperKit/play.png"></a></td>
+          <td><a onclick="location.href='More_iOS/more.html';"><img class="icon" src="./Resources/Icons/DeveloperKit/information.png"></a></td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+</body>
+</html>
+

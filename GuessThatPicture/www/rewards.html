@@ -1,0 +1,272 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <!-- Change this if you want to allow scaling -->
+  <meta name="viewport" content="width=default-width; user-scalable=no" />
+
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+
+  <link type="text/css" rel="stylesheet" href="common.css">
+  <link rel="stylesheet" href="ProgressBar.css" type="text/css" />
+
+  <title>Guess That Picture</title>
+
+  <style>
+    *
+    {
+      margin: 1px;
+    }
+  </style>
+
+  <!-- iPad/iPhone specific css below, add after your main css >
+  <link rel="stylesheet" media="only screen and (max-device-width: 1024px)" href="ipad.css" type="text/css" />
+  <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="iphone.css" type="text/css" />
+  -->
+
+  <script language="javascript" type="text/javascript" src="jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="common.js"></script>
+  <script type="text/javascript" charset="utf-8" src="BrowserDetect.js"></script>
+  <script type="text/javascript" charset="utf-8" src="AlphabetTracer.js"></script>
+
+  <script type="text/javascript" charset="utf-8">
+    var FoundFirstUnavailable = false;
+    var ToyScores = new Array();
+
+    ToyScores.push(0);
+
+    function InitToy(id)
+    {
+      var score = parseInt(GetScore());
+      var toy = document.getElementById(id);
+      var thresholdScore = parseInt(id);
+      var progress = document.getElementById("progress_" + id);
+
+      ToyScores.push(thresholdScore);
+
+      if (thresholdScore > score)
+      {
+        // START_HACK   assumes structure
+        // disable using toy
+        toy.children[0].onclick = null;
+
+        // put placeholder if not available
+        var img = toy.children[0].children[0];
+        img.src = "./Resources/Icons/key_question.png";
+        // END_HACK
+
+        // only show progress bar for the next toy
+        if (!FoundFirstUnavailable)
+        {
+          FoundFirstUnavailable = true;
+
+          // workaround to left align progress bar
+          progress.style.float = "left";
+          progress.align = "left";
+
+          // centre under image
+          progress.style.left = (toy.offsetWidth - progress.offsetWidth)/2 +"px";
+
+          // take into account increment to next toy
+          var incr = ToyScores[ToyScores.length - 1] - ToyScores[ToyScores.length - 2];
+          var maxProgress = progress.clientWidth;
+          var progVal = maxProgress - (thresholdScore - score) / incr * maxProgress;
+          $(progress).find('.meter-value-toy').css('width', progVal + "%");
+        }
+        else
+        {
+          // hide progress bar of other unavailable
+          progress.style.visibility = "hidden";
+        }
+      }
+      else
+      {
+        // hide progress bar if available
+        progress.style.visibility = "hidden";
+      }
+    }
+
+    function InitMain()
+    {
+      PreventTouchMove();
+
+      // specify score in Chrome for testing
+      if (BrowserDetect.browser == "Chrome")
+      {
+        var score = GetParameterByName("score");
+        if (score != "")
+        {
+          SetScore(parseInt(score));
+        }
+      }
+
+      // TODO   remove before release
+      //SetScore(470);
+
+      var toys = document.getElementById("toys");
+      toys.style.height = window.innerHeight - 3 + "px";
+
+      // NOTE:    must be in ascending point order
+      InitToy("100");
+      InitToy("200");
+      InitToy("300");
+      InitToy("400");
+      InitToy("500");
+      InitToy("600");
+      InitToy("700");
+      InitToy("800");
+      InitToy("900");
+      InitToy("1000");
+      InitToy("1100");
+      InitToy("1200");
+      InitToy("1300");
+      InitToy("1400");
+      InitToy("1500");
+      InitToy("1600");
+      InitToy("1700");
+      InitToy("1800");
+    }
+
+    function Play(toy, sound)
+    {
+      location.href = "rewards-player.html?toy=" + toy + "&sound=" + sound;
+    }
+  </script>
+
+</head>
+
+<body id="bg" onLoad="InitMain();">
+  <div style="margin:-2px; height:480px;">
+    <table id="toys" style="width: 100%; height: 100%;">
+      <tbody align="center">
+        <tr>
+          <td id="1600" class="reward">
+            <a onclick="Play('loco7', '104672__jjbulley__dungeness-miniature-railway.mp3');"><img src="./Resources/Rewards/Images/loco7.png"></a>
+            <div class="meter-wrap-toy" id="progress_1600">
+              <div class="meter-value-toy" style="background-color: rgb(0, 255, 33); width: 10%;"></div>
+            </div>
+          </td>
+          <td id="1700" class="reward">
+            <a onclick="Play('rabbit', '84141__dobroide__20091122-rabbit-carrot.mp3');"><img src="./Resources/Rewards/Images/rabbit.png"></a>
+            <div class="meter-wrap-toy" id="progress_1700">
+              <div class="meter-value-toy" style="background-color: rgb(0, 255, 33); width: 10%;"></div>
+            </div>
+          </td>
+          <td id="1800" class="reward">
+            <a onclick="Play('loco9', '31626__acclivity__chugchugwoohoo1.mp3');"><img src="./Resources/Rewards/Images/loco9.png"></a>
+            <div class="meter-wrap-toy" id="progress_1800">
+              <div class="meter-value-toy" style="background-color: rgb(0, 255, 33); width: 10%;"></div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td id="1300" class="reward">
+            <a onclick="Play('chicken', '24967__mich3d__chickenlayinganegg-01.mp3');"><img src="./Resources/Rewards/Images/chicken.png"></a>
+            <div class="meter-wrap-toy" id="progress_1300">
+              <div class="meter-value-toy" style="background-color: rgb(0, 255, 33); width: 10%;"></div>
+            </div>
+          </td>
+          <td id="1400" class="reward">
+            <a onclick="Play('loco8', '125211__keithpeter__steam-train-leaving-moor-st-station.mp3');"><img src="./Resources/Rewards/Images/loco8.png"></a>
+            <div class="meter-wrap-toy" id="progress_1400">
+              <div class="meter-value-toy" style="background-color: rgb(0, 255, 33); width: 10%;"></div>
+            </div>
+          </td>
+          <td id="1500" class="reward">
+            <a onclick="Play('horse', '18229__dobroide__20060419-horse-neigh.mp3');"><img src="./Resources/Rewards/Images/horse.png"></a>
+            <div class="meter-wrap-toy" id="progress_1500">
+              <div class="meter-value-toy" style="background-color: rgb(0, 255, 33); width: 10%;"></div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td id="1000" class="reward">
+            <a onclick="Play('loco5', '130667__klankbeeld__steam-whistle-02.mp3');"><img src="./Resources/Rewards/Images/loco5.png"></a>
+            <div class="meter-wrap-toy" id="progress_1000">
+              <div class="meter-value-toy" style="background-color: rgb(0, 255, 33); width: 10%;"></div>
+            </div>
+          </td>
+          <td id="1100" class="reward">
+            <a onclick="Play('dog', '4912__noisecollector__barks.mp3');"><img src="./Resources/Rewards/Images/dog.png"></a>
+            <div class="meter-wrap-toy" id="progress_1100">
+              <div class="meter-value-toy" style="background-color: rgb(0, 255, 33); width: 10%;"></div>
+            </div>
+          </td>
+          <td id="1200" class="reward">
+            <a onclick="Play('loco6', '31626__acclivity__chugchugwoohoo2.mp3');"><img src="./Resources/Rewards/Images/loco6.png"></a>
+            <div class="meter-wrap-toy" id="progress_1200">
+              <div class="meter-value-toy" style="background-color: rgb(0, 255, 33); width: 10%;"></div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td id="700" class="reward">
+            <a onclick="Play('cat', '18272__zippi1__sound-meow3.mp3');"><img src="./Resources/Rewards/Images/cat.png"></a>
+            <div class="meter-wrap-toy" id="progress_700">
+              <div class="meter-value-toy" style="background-color: rgb(0, 255, 33); width: 10%;"></div>
+            </div>
+          </td>
+          <td id="800" class="reward">
+            <a onclick="Play('loco4', '120168__klankbeeld__steam-train-leaving-station-110507-09.mp3');"><img src="./Resources/Rewards/Images/loco4.png"></a>
+            <div class="meter-wrap-toy" id="progress_800">
+              <div class="meter-value-toy" style="background-color: rgb(0, 255, 33); width: 10%;"></div>
+            </div>
+          </td>
+          <td id="900" class="reward">
+            <a onclick="Play('cow', '69641__genghis-attenborough__cow2.mp3');"><img src="./Resources/Rewards/Images/cow.png"></a>
+            <div class="meter-wrap-toy" id="progress_900">
+              <div class="meter-value-toy" style="background-color: rgb(0, 255, 33); width: 10%;"></div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td id="400" class="reward">
+            <a onclick="Play('loco2', '25867__acclivity__bluebellrailway5.mp3');"><img src="./Resources/Rewards/Images/loco2.png"></a>
+            <div class="meter-wrap-toy" id="progress_400">
+              <div class="meter-value-toy" style="background-color: rgb(0, 255, 33); width: 10%;"></div>
+            </div>
+          </td>
+          <td id="500" class="reward">
+            <a onclick="Play('duck', '31835__dobroide__20070303-duck.mp3');"><img src="./Resources/Rewards/Images/duck.png"></a>
+            <div class="meter-wrap-toy" id="progress_500">
+              <div class="meter-value-toy" style="background-color: rgb(0, 255, 33); width: 10%;"></div>
+            </div>
+          </td>
+          <td id="600" class="reward">
+            <a onclick="Play('loco3', '39413__gadzooks__steam2.mp3');"><img src="./Resources/Rewards/Images/loco3.png"></a>
+            <div class="meter-wrap-toy" id="progress_600">
+              <div class="meter-value-toy" style="background-color: rgb(0, 255, 33); width: 10%;"></div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td id="100" class="reward">
+            <a onclick="Play('pig', '44273__erdie__pig04.mp3');"><img src="./Resources/Rewards/Images/pig.png"></a>
+            <div class="meter-wrap-toy" id="progress_100">
+              <div class="meter-value-toy" style="background-color: rgb(0, 255, 33); width: 10%;"></div>
+            </div>
+          </td>
+          <td id="200" class="reward">
+            <a onclick="Play('loco1', '63925__benboncan__blanche-uphill.mp3');"><img src="./Resources/Rewards/Images/loco1.png"></a>
+            <div class="meter-wrap-toy" id="progress_200">
+              <div class="meter-value-toy" style="background-color: rgb(0, 255, 33); width: 10%;"></div>
+            </div>
+          </td>
+          <td id="300" class="reward">
+            <a onclick="Play('sheep', '57796__reinsamba__1203-hungarian-sheep.mp3');"><img src="./Resources/Rewards/Images/sheep.png"></a>
+            <div class="meter-wrap-toy" id="progress_300">
+              <div class="meter-value-toy" style="background-color: rgb(0, 255, 33); width: 10%;"></div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><a onclick="location.href='index.html';"><img class="icon" src="./Resources/Icons/DeveloperKit/home.png"></a></td>
+          <td><a onclick="location.href='game.html';"><img class="icon" src="./Resources/Icons/DeveloperKit/play.png"></a></td>
+          <td><a onclick="location.href='More_iOS/more.html';"><img class="icon" src="./Resources/Icons/DeveloperKit/information.png"></a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>
+

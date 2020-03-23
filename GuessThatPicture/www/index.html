@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <!-- Change this if you want to allow scaling -->
+  <meta name="viewport" content="width=default-width; user-scalable=no" />
+
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+
+  <link type="text/css" rel="stylesheet" href="common.css">
+
+  <title>Guess That Picture</title>
+
+  <style>
+    *
+    {
+      margin: 1px;
+    }
+  </style>
+
+  <!-- iPad/iPhone specific css below, add after your main css >
+  <link rel="stylesheet" media="only screen and (max-device-width: 1024px)" href="ipad.css" type="text/css" />
+  <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="iphone.css" type="text/css" />
+  -->
+
+  <script type="text/javascript" charset="utf-8" src="common.js"></script>
+  <script type="text/javascript" charset="utf-8" src="BrowserDetect.js"></script>
+  <script type="text/javascript" charset="utf-8" src="AlphabetTracer.js"></script>
+
+  <script type="text/javascript" charset="utf-8">
+    function InitMain()
+    {
+      PreventTouchMove();
+    }
+  </script>
+  <script type="text/javascript" language="javascript">
+    function ToggleVisibility(id, disc)
+    {
+      var e = document.getElementById(id);
+      var disc = document.getElementById(disc);
+      if (e.style.visibility == "hidden")
+      {
+        e.style.visibility = "visible";
+        e.style.height = "auto";
+        e.style.overflow = "auto";
+        disc.src = "./Resources/Icons/Kuba/GreenDown.png";
+      }
+      else
+      {
+        e.style.visibility = "hidden";
+        e.style.height = "0px";
+        disc.src = "./Resources/Icons/Kuba/GreenRight.png";
+      }
+    }
+
+    function ToggleInstructions()
+    {
+      ToggleVisibility("InstructionsDiv", "InstructionsDisclosure");
+    }
+
+    function ToggleCopyright()
+    {
+      ToggleVisibility("CopyrightDiv", "CopyrightDisclosure");
+    }
+
+    function InitIndex()
+    {
+      ShouldPlaySound = GetPlaySound();
+      ShouldPlaySound = !ShouldPlaySound;
+      ToggleSound();
+    }
+  </script>
+</head>
+
+<body id="bg" onLoad="InitMain();InitIndex();">
+  <div align="center" style="margin:-2px;">
+    <h2>Guess That Picture</h2>
+    <h3>Instructions  <img id="InstructionsDisclosure" class="Disclosure" align="center" src="./Resources/Icons/Kuba/GreenRight.png" onclick="ToggleInstructions();" /></h3>
+    <div id="InstructionsDiv" style="visibility: hidden; height: 0px;">
+      Scrape the screen to reveal part of a picture.  Guess what it is to earn points and get rewards.<p>
+    </div>
+    <br>
+    <br>
+
+    <div>
+      <table>
+        <tbody>
+          <tr>
+            <td>Play</td>
+            <td><a onclick="location.href='game.html';return false;"><img class="icon" src="./Resources/Icons/DeveloperKit/play.png"></a></td>
+          </tr>
+          <tr>
+            <td>Rewards</td>
+            <td><a onclick="location.href='rewards.html';return false;"><img class="icon" src="./Resources/Icons/DeveloperKit/star.png"></a></td>
+          </tr>
+          <tr>
+            <td>Toggle Sound</td>
+            <td><a onclick="ToggleSound();"><img id="AudioController" class="icon" src="./Resources/Icons/DeveloperKit/Music.png"></a></td>
+          </tr>
+          <tr>
+            <td>Reset</td>
+            <td><a onclick="SetScore(0);"><img class="icon" src="./Resources/Icons/DeveloperKit/refresh.png"></a></td>
+          </tr>
+          <tr>
+            <td>More Information</td>
+            <td><a onclick="location.href='More_iOS/more.html';"><img class="icon" src="./Resources/Icons/DeveloperKit/information.png"></a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>
+</html>
+

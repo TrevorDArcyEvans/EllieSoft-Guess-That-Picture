@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<!-- saved from url=(0054)http://devfiles.myopera.com/articles/649/example5.html -->
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+
+    <!-- Change this if you want to allow scaling -->
+    <meta name="viewport" content="width=default-width; user-scalable=no" />
+
+    <title>Guess That Picture</title>
+
+    <link rel="stylesheet" href="common.css" type="text/css" />
+    <link rel="stylesheet" href="ProgressBar.css" type="text/css" />
+
+    <style type="text/css">
+      *
+      {
+        margin: 0px;
+      }
+
+      .icon
+      {
+        padding-left: 25px;
+      }
+
+      .feedback_img
+      {
+        width: 256px;
+        height: 256px;
+      }
+
+      #overlay
+      {
+        visibility: hidden;
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        width:100%;
+        height:100%;
+        text-align:center;
+        z-index: 1000;
+        background-image:url(background-trans.png);
+      }
+
+      #overlay div
+      {
+        width:300px;
+        margin: 100px auto;
+        background-color: #fff;
+        border:1px solid #000;
+        padding:5px;
+        text-align:center;
+        -webkit-border-radius: 15px;
+      }
+    </style>
+
+    <script language="javascript" type="text/javascript" src="jquery.js"></script>
+
+    <script type="text/javascript" src="common.js"></script>
+
+    <script type="text/javascript" src="BrowserDetect.js"></script>
+    <script type="text/javascript" src="AlphabetFiles.js"></script>
+    <script type="text/javascript" src="AlphabetTracer.js"></script>
+  </head>
+
+  <body onload="OnBodyLoad();" onresize="ResizeCanvas();ReloadCanvas();">
+    <!-- audio id="audiotag1" src="./Sounds/108486__robinhood76.mp3" preload="auto"></audio -->
+    <img id="correct" class="feedback_img" src="./Resources/Feedback/face-smile.png" style="visibility: hidden; position:absolute; left:180px; top:180px; z-index: 1000;" />
+    <img id="incorrect"class="feedback_img" src="./Resources/Feedback/face-sad.png" style="visibility: hidden; position:absolute; left:180px; top:180px; z-index: 1000;" />
+
+    <div class="meter-wrap" id="progress" style="position: absolute; left: 80px; top: 3px; z-index: 1000;">
+      <div class="meter-value" style="background-color: rgb(0, 255, 33); width: 100%;"></div>
+    </div>
+
+    <div>
+      <canvas id="MainCanvas" width="600" height="600"></canvas>
+    </div>
+
+    <div id="chooser" style="display:none; visibility:hidden; margin:auto; position:absolute; left:80px; top:0px;">
+      <table id="choices" style="background-color: rgba(51, 51, 153, 0.6);">
+        <tr>
+          <td><input id="restart" type="button" onclick="Restart();" style="display:none; visibility:hidden;" value="Restart" /></td>
+        </tr>
+        <tr>
+          <td><input id="choice0" type="button" onclick="ProcessChoice(value);" value="Back0" /></td>
+        </tr>
+        <tr>
+          <td><input id="choice1" type="button" onclick="ProcessChoice(value);" value="Back1" /></td>
+        </tr>
+        <tr>
+          <td><input id="choice2" type="button" onclick="ProcessChoice(value);" value="Back2" /></td>
+        </tr>
+        <tr>
+          <td><input id="choice3" type="button" onclick="ProcessChoice(value);" value="Back3" /></td>
+        </tr>
+        <tr>
+          <td><input id="choice4" type="button" onclick="ProcessChoice(value);" value="Back4" /></td>
+        </tr>
+      </table>
+
+      <table id="toggle">
+        <tr style="padding-top:25px;">
+          <td><img id="toggleDown" src="./Resources/Icons/DeveloperKit/down.png" onclick="ToggleChoices();" />
+          <td><img id="toggleUp" style="display:none;visibility:hidden;" src="./Resources/Icons/DeveloperKit/up.png" onclick="ToggleChoices();" />
+        </tr>
+      </table>
+    </div>
+
+    <div id="scoreboard" style="display:none; visibility:hidden; margin:auto; position:absolute; left:10px; top:0px; padding-top: 10px; z-index: 1000;">
+      <table style="background-color: white;">
+        <tr>
+          <td>
+            <img class="icon" src="./Resources/Feedback/face-smile.png" style="padding-left: 0px;">
+          </td>
+          <td id="score">
+            aaa
+          </td>
+          <td>
+            <img class="icon" src="./Resources/Feedback/face-sad.png">
+          </td>
+          <td id="wrong">
+            bbb
+          </td>
+          <td>
+            <a onclick="location.href='index.html';">
+              <img class="icon" src="./Resources/Icons/DeveloperKit/home.png">
+            </a>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <div id="overlay">
+      <div id="score">
+        %SCORE_TOKEN%<p>
+        <a onclick="location.href='index.html';"><img src="./Resources/Icons/DeveloperKit/home.png" /></a>
+      </div>
+    </div>
+
+  </body>
+</html>

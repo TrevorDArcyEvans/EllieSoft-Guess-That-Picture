@@ -1,0 +1,154 @@
+*
+{
+  margin: 10px;
+  font-family: Arial;
+  -webkit-user-select: none;  /* prevent copy paste for all elements */
+}
+
+img, .icon
+{
+  width:48px;
+  height:48px;
+}
+
+.reward
+{
+  visibility: visible;
+}
+
+.reward img
+{
+  width: 32px;
+  height: 32px;
+}
+
+table
+{
+  border-spacing: 0px;
+}
+
+hr
+{
+  height: 2px;
+  width: 100%;
+}
+
+#bg
+{
+  background-image:url('AlphabetTracer_bg.png');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-color:rgb(171,171,212);
+}
+
+button
+{
+  font-size: large;
+  height:32px;
+}
+
+/*
+** Shiny buttons
+*/
+input[type=button]
+{
+  font-size: 1.3em;
+  font-weight: bold;
+  width:200px;
+  height: 45px;
+  border: 3px solid #282726;
+  background: -webkit-gradient( linear, left top, left bottom, from(#e2e2e2), to(#8c8a88), color-stop(0.5, #acadae), color-stop(0.5, #82807e) );
+  margin: 0 0 3px 0;
+  text-shadow: 0px 1px 0 #cecece;
+  -webkit-background-origin: padding-box;
+  -webkit-background-clip: border-box;
+  -webkit-border-radius: 8px;
+}
+
+iframe
+{
+  margin:5px;
+  border:0px;
+}
+
+pre, xmp, plaintext, listing
+{
+  font-family:Arial;
+  margin:5px;
+  border:0px;
+}
+
+.app_img
+{
+  border: 1px solid;
+  width: 128px;
+  height: 128px;
+}
+
+.app_store_badge
+{
+  border: 0px solid;
+  width: 168px;
+  height: 58px;
+}
+
+.android_store_badge
+{
+  border: 0px solid;
+  width: 58px;
+  height: 58px;
+}
+
+.elliesoft_store_badge
+{
+  border: 0px solid;
+  width: 58px;
+  height: 66px;
+}
+
+.iPhone_img
+{
+  border: 1px solid;
+  width: 160px;
+  height: 240px;
+}
+
+.iPhone_ls_img
+{
+  border: 1px solid;
+  width: 240px;
+  height: 160px;
+}
+
+.iPad_img
+{
+  border: 1px solid;
+  width: 320px;
+  height: 480px;
+}
+
+.OSX_img
+{
+  border: 1px solid;
+  width: 640px;
+  height: 400px;
+}
+
+.DisclosureTable
+{
+  width: 100%
+}
+
+img.Disclosure
+{
+  width:50px;
+  height:50px;
+  margin: 0px;
+  align: center;
+}
+
+.ControlCell
+{
+  align:center;
+}
+
